@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cat</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: rgb(231, 231, 231);
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            animation: in 4s ease;
+            border-radius: 10px;
+        }
+        @keyframes in {
+            0% {
+                transform: scale(0) rotate(0deg);
+                filter: blur(50px);
+            }
+            100% {
+                transform: scale(1) rotate(360deg);
+                filter: blur(0px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <img src="cat.jpeg" alt="cat">
+    <script>
+        const audio1 = new Audio('song2.mp3');
+        const audio2 = new Audio('song.mp3');
+        
+        audio1.volume = 0.5;
+        audio1.playbackRate = 1;
+        audio1.loop = false;
+        
+        audio2.volume = 0.5;
+        audio2.playbackRate = 1;
+        audio2.loop = false;
+        
+        audio1.addEventListener('ended', () => {
+            audio2.play();
+        });
+        
+        audio2.addEventListener('ended', () => {
+            audio1.play();
+        });
+        
+        audio1.play();
+    </script>
+</body>
+</html>
