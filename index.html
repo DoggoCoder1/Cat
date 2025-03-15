@@ -12,6 +12,7 @@
             height: 100vh;
             margin: 0;
             background: rgb(231, 231, 231);
+            flex-direction: column;
         }
         img {
             max-width: 100%;
@@ -32,28 +33,36 @@
     </style>
 </head>
 <body>
-    <img src="cat.jpeg" alt="cat">
+    <button id="button" onclick="loadContent()">Click this button to initialize webpage.</button>
+    <div id="content" style="display: none;">
+        <img src="cat.jpeg" alt="cat">
+    </div>
     <script>
-        const audio1 = new Audio('song2.mp3');
-        const audio2 = new Audio('song.mp3');
-        
-        audio1.volume = 0.5;
-        audio1.playbackRate = 1;
-        audio1.loop = false;
-        
-        audio2.volume = 0.5;
-        audio2.playbackRate = 1;
-        audio2.loop = false;
-        
-        audio1.addEventListener('ended', () => {
-            audio2.play();
-        });
-        
-        audio2.addEventListener('ended', () => {
+        function loadContent() {
+            document.getElementById('content').style.display = 'block';
+            document.getElementById('button').style.display = 'none';
+            
+            const audio1 = new Audio('song2.mp3');
+            const audio2 = new Audio('song.mp3');
+            
+            audio1.volume = 0.5;
+            audio1.playbackRate = 1;
+            audio1.loop = false;
+            
+            audio2.volume = 0.5;
+            audio2.playbackRate = 1;
+            audio2.loop = false;
+            
+            audio1.addEventListener('ended', () => {
+                audio2.play();
+            });
+            
+            audio2.addEventListener('ended', () => {
+                audio1.play();
+            });
+            
             audio1.play();
-        });
-        
-        audio1.play();
+        }
     </script>
 </body>
 </html>
